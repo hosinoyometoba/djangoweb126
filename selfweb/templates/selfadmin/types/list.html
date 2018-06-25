@@ -1,0 +1,28 @@
+{% extends 'selfadmin/public/base.html' %}
+
+{% block main %}
+<div class="tpl-content-wrapper">
+
+
+    
+
+</div>
+</div>
+<script src="/static/selfadmin/js/amazeui.min.js"></script>
+<script src="/static/selfadmin/js/amazeui.datatables.min.js"></script>
+<script src="/static/selfadmin/js/dataTables.responsive.min.js"></script>
+<script src="/static/selfadmin/js/app.js"></script>
+<script>
+    $('.tpl-table-black-operation-del').click(function(){
+        sid = $(this).parents('tr').find('td').eq(0).text()
+        el = $(this).parents('tr')
+        console.log(sid)
+        $.get('{% url "selfadmin_delete" %}',{uid:sid},function(data){
+            // console.log(data)
+            alert(data.msg)
+            if(data.code == 0){el.remove()}
+        },'json')
+    })
+</script>
+
+{% endblock main %}
